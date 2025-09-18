@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\LevelUp.Application\LevelUp.Application.csproj" />
+    <ProjectReference Include="..\LevelUp.Domain\LevelUp.Domain\LevelUp.Domain.csproj" />
+  </ItemGroup>
+</Project>
