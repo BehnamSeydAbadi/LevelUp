@@ -1,6 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\LevelUp.Application\LevelUp.Application.csproj" />
-    <ProjectReference Include="..\LevelUp.Domain\LevelUp.Domain\LevelUp.Domain.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\LevelUp.Application\LevelUp.Application.csproj"/>
+        <ProjectReference Include="..\LevelUp.Domain\LevelUp.Domain\LevelUp.Domain.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory"/>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Persistence\UserEfConfiguration\" />
+    </ItemGroup>
 </Project>
