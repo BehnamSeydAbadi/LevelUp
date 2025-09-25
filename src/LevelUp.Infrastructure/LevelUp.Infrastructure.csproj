@@ -7,7 +7,4 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory"/>
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Persistence\UserEfConfiguration\" />
-    </ItemGroup>
 </Project>
