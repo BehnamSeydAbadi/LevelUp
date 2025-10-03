@@ -4,7 +4,7 @@ using LevelUp.Domain.Activities;
 namespace LevelUp.Application.Activities.UseCases.CreateActivity;
 
 public class CreateActivityUseCase(IActivityRepository activityRepository)
-    : IUseCase<CreateActivityRequest, NothingResponse>
+    : IWriteUseCase<CreateActivityRequest, NothingResponse>
 {
     public async Task<NothingResponse> HandleAsync(CreateActivityRequest request)
     {

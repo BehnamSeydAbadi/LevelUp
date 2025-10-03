@@ -12,7 +12,7 @@ public static class ActivityEndpoints
     {
         app.MapPost($"api/{version}/activities", async (
             [FromBody] CreateActivityDto dto,
-            [FromServices] IUseCase<CreateActivityRequest, NothingResponse> useCase
+            [FromServices] IWriteUseCase<CreateActivityRequest, NothingResponse> useCase
         ) =>
         {
             var request = new CreateActivityRequest
@@ -28,7 +28,7 @@ public static class ActivityEndpoints
         });
 
         app.MapGet($"api/{version}/activities", async (
-            [FromServices] IUseCase<GetActivitiesRequest, ActivityResponse[]> useCase
+            [FromServices] IReadUseCase<GetActivitiesRequest, ActivityResponse[]> useCase
         ) =>
         {
             var response = await useCase.HandleAsync(new GetActivitiesRequest());

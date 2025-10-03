@@ -10,10 +10,10 @@ public static class ApplicationBootstrapper
 {
     public static void Run(IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IUseCase<CreateActivityRequest, NothingResponse>, CreateActivityUseCase>();
+        serviceCollection.AddScoped<IWriteUseCase<CreateActivityRequest, NothingResponse>, CreateActivityUseCase>();
 
-        serviceCollection.AddScoped<IUseCase<GetActivitiesRequest, ActivityResponse[]>, GetActivitiesUseCase>();
+        serviceCollection.AddScoped<IReadUseCase<GetActivitiesRequest, ActivityResponse[]>, GetActivitiesUseCase>();
 
-        serviceCollection.Decorate(typeof(IUseCase<,>), typeof(SaveChangesUseCaseDecorator<,>));
+        serviceCollection.Decorate(typeof(IWriteUseCase<,>), typeof(SaveChangesUseCaseDecorator<,>));
     }
 }

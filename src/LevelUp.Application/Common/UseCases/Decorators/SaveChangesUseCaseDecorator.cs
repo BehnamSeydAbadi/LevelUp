@@ -3,7 +3,7 @@ namespace LevelUp.Application.Common.UseCases.Decorators;
 public class SaveChangesUseCaseDecorator<TRequest, TResponse>(
     IUseCase<TRequest, TResponse> useCase,
     IUnitOfWork unitOfWork
-) : IUseCase<TRequest, TResponse>
+) : IWriteUseCase<TRequest, TResponse>
 {
     public async Task<TResponse> HandleAsync(TRequest request)
     {
