@@ -17,7 +17,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\LevelUp.Domain\LevelUp.Domain.csproj" />
-        <ProjectReference Include="..\LevelUp.Domain\LevelUp.Domain\LevelUp.Domain.csproj"/>
     </ItemGroup>
 
 </Project>
