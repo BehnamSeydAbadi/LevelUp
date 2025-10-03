@@ -1,4 +1,4 @@
-using LevelUp.Application.Activities.UseCases.CreateActivity;
+using LevelUp.Application.Activities.UseCases.CreateDurativeActivity;
 using LevelUp.Application.Activities.UseCases.GetActivities;
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Application.Common.UseCases.Decorators;
@@ -10,9 +10,9 @@ public static class ApplicationBootstrapper
 {
     public static void Run(IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IWriteUseCase<CreateActivityRequest, NothingResponse>, CreateActivityUseCase>();
+        serviceCollection.AddScoped<IWriteUseCase<CreateDurativeActivityRequest, NothingResponse>, CreateDurativeActivityUseCase>();
 
-        serviceCollection.AddScoped<IReadUseCase<GetActivitiesRequest, ActivityResponse[]>, GetActivitiesUseCase>();
+        serviceCollection.AddScoped<IReadUseCase<GetDurativeActivitiesRequest, DurativeActivityResponse[]>, GetDurativeActivitiesUseCase>();
 
         serviceCollection.Decorate(typeof(IWriteUseCase<,>), typeof(SaveChangesUseCaseDecorator<,>));
     }

@@ -1,6 +1,6 @@
-namespace LevelUp.Application.Activities.UseCases.CreateActivity;
+namespace LevelUp.Application.Activities.UseCases.CreateDurativeActivity;
 
-public record CreateActivityRequest
+public record CreateDurativeActivityRequest
 {
     public string Name { get; init; }
     public DateTimeOffset Date { get; init; }

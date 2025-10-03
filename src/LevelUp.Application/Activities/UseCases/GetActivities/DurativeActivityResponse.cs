@@ -1,12 +1,12 @@
-using LevelUp.Domain.Activities;
+using LevelUp.Domain.DurativeActivities;
 
 namespace LevelUp.Application.Activities.UseCases.GetActivities;
 
-public class ActivityResponse
+public class DurativeActivityResponse
 {
-    public static ActivityResponse Map(Activity entity)
+    public static DurativeActivityResponse Map(DurativeActivity entity)
     {
-        return new ActivityResponse
+        return new DurativeActivityResponse
         {
             Id = entity.Id,
             Name = entity.Name,

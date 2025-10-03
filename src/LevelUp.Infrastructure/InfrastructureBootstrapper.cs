@@ -1,7 +1,8 @@
 using LevelUp.Application.Common;
-using LevelUp.Domain.Activities;
-using LevelUp.Infrastructure.Activities;
+using LevelUp.Domain.DurativeActivities;
 using LevelUp.Infrastructure.Common;
+using LevelUp.Infrastructure.DurativeActivities;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,8 +17,17 @@ public static class InfrastructureBootstrapper
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
         );
 
-        services.AddScoped<IActivityRepository, ActivityRepository>();
+        services.AddScoped<IDurativeActivityRepository, DurativeActivityRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+    }
+
+    public static void ApplyMigrations(IApplicationBuilder app)
+    {
+        var serviceScope = app.ApplicationServices.CreateScope();
+        var dbContext = serviceScope.ServiceProvider.GetRequiredService<LevelUpDbContext>();
+        dbContext.Database.Migrate();
+        dbContext.Database.CloseConnection();
+        serviceScope.Dispose();
     }
 }

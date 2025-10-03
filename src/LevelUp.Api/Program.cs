@@ -14,6 +14,8 @@ InfrastructureBootstrapper.Run(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
+InfrastructureBootstrapper.ApplyMigrations(app);
+
 ActivityEndpoints.Map(app, version: "v1");
 
 // Configure the HTTP request pipeline.

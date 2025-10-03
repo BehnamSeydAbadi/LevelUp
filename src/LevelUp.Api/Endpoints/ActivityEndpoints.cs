@@ -1,5 +1,5 @@
 using LevelUp.Api.Endpoints.DTOs;
-using LevelUp.Application.Activities.UseCases.CreateActivity;
+using LevelUp.Application.Activities.UseCases.CreateDurativeActivity;
 using LevelUp.Application.Activities.UseCases.GetActivities;
 using LevelUp.Application.Common.UseCases;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +10,12 @@ public static class ActivityEndpoints
 {
     public static void Map(IEndpointRouteBuilder app, string version)
     {
-        app.MapPost($"api/{version}/activities", async (
-            [FromBody] CreateActivityDto dto,
-            [FromServices] IWriteUseCase<CreateActivityRequest, NothingResponse> useCase
+        app.MapPost($"api/{version}/activities/duratives", async (
+            [FromBody] CreateDurativeActivityDto dto,
+            [FromServices] IWriteUseCase<CreateDurativeActivityRequest, NothingResponse> useCase
         ) =>
         {
-            var request = new CreateActivityRequest
+            var request = new CreateDurativeActivityRequest
             {
                 Name = dto.Name,
                 Date = dto.Date,
@@ -27,11 +27,11 @@ public static class ActivityEndpoints
             return Results.Ok();
         });
 
-        app.MapGet($"api/{version}/activities", async (
-            [FromServices] IReadUseCase<GetActivitiesRequest, ActivityResponse[]> useCase
+        app.MapGet($"api/{version}/activities/duratives", async (
+            [FromServices] IReadUseCase<GetDurativeActivitiesRequest, DurativeActivityResponse[]> useCase
         ) =>
         {
-            var response = await useCase.HandleAsync(new GetActivitiesRequest());
+            var response = await useCase.HandleAsync(new GetDurativeActivitiesRequest());
             return Results.Ok(response);
         });
     }

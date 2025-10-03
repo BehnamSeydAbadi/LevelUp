@@ -1,4 +1,4 @@
-using LevelUp.Infrastructure.Activities;
+using LevelUp.Infrastructure.DurativeActivities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LevelUp.Infrastructure;
@@ -7,7 +7,7 @@ public class LevelUpDbContext(DbContextOptions<LevelUpDbContext> options) : DbCo
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ActivityConfiguration).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DurativeActivityConfiguration).Assembly);
         base.OnModelCreating(modelBuilder);
     }
 }

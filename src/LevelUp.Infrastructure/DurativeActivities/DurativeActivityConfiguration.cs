@@ -1,12 +1,12 @@
-using LevelUp.Domain.Activities;
+using LevelUp.Domain.DurativeActivities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LevelUp.Infrastructure.Activities;
+namespace LevelUp.Infrastructure.DurativeActivities;
 
-public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
+public class DurativeActivityConfiguration : IEntityTypeConfiguration<DurativeActivity>
 {
-    public void Configure(EntityTypeBuilder<Activity> builder)
+    public void Configure(EntityTypeBuilder<DurativeActivity> builder)
     {
         builder.HasKey(a => a.Id);
 

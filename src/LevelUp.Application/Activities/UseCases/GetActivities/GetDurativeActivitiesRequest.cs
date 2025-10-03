@@ -1,3 +1,3 @@
 namespace LevelUp.Application.Activities.UseCases.GetActivities;
 
-public class GetActivitiesRequest;
+public class GetDurativeActivitiesRequest;

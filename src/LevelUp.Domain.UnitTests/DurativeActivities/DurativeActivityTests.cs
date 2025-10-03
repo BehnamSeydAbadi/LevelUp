@@ -1,8 +1,8 @@
-using LevelUp.Domain.Activities;
+using LevelUp.Domain.DurativeActivities;
 
-namespace LevelUp.Domain.UnitTests.Activities;
+namespace LevelUp.Domain.UnitTests.DurativeActivities;
 
-public class ActivityTests
+public class DurativeActivityTests
 {
     [Fact(DisplayName = "When an activity is created, Then it is done successfully")]
     public void When_An_Activity_Is_Created_Then_It_Is_Done_Successfully()
@@ -13,7 +13,7 @@ public class ActivityTests
         const string category = "activity-category";
 
 
-        var activity = Activity.Create(name, date, duration, category);
+        var activity = DurativeActivity.Create(name, date, duration, category);
 
 
         activity.Id.Should().NotBe(Guid.Empty);

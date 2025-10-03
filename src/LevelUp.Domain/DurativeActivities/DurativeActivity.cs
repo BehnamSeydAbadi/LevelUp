@@ -1,18 +1,18 @@
 using LevelUp.Domain.Common;
 
-namespace LevelUp.Domain.Activities;
+namespace LevelUp.Domain.DurativeActivities;
 
-public class Activity : AggregateRoot<Guid>
+public class DurativeActivity : AggregateRoot<Guid>
 {
-    public static Activity Create(string name, DateTimeOffset date, TimeSpan duration, string category)
+    public static DurativeActivity Create(string name, DateTimeOffset date, TimeSpan duration, string category)
         => new(Guid.NewGuid(), name, date, duration, category);
 
     [PersistenceOnlyPurpose]
-    public Activity()
+    public DurativeActivity()
     {
     }
 
-    private Activity(Guid id, string name, DateTimeOffset date, TimeSpan duration, string category)
+    private DurativeActivity(Guid id, string name, DateTimeOffset date, TimeSpan duration, string category)
     {
         Id = id;
         Name = name;

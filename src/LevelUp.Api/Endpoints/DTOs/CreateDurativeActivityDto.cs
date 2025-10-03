@@ -1,6 +1,6 @@
 namespace LevelUp.Api.Endpoints.DTOs;
 
-public class CreateActivityDto
+public class CreateDurativeActivityDto
 {
     public string Name { get; init; }
     public DateTimeOffset Date { get; init; }
