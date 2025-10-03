@@ -1,12 +1,12 @@
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Domain.DurativeActivities;
 
-namespace LevelUp.Application.Activities.UseCases.CreateDurativeActivity;
+namespace LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
 
 public class CreateDurativeActivityUseCase(IDurativeActivityRepository durativeActivityRepository)
-    : IWriteUseCase<CreateDurativeActivityRequest, NothingResponse>
+    : IWriteUseCase<CreateDurativeActivityRequest, Guid>
 {
-    public async Task<NothingResponse> HandleAsync(CreateDurativeActivityRequest request)
+    public async Task<Guid> HandleAsync(CreateDurativeActivityRequest request)
     {
         var activity = DurativeActivity.Create(request.Name, request.Date, request.Duration, request.Category);
 
@@ -14,6 +14,6 @@ public class CreateDurativeActivityUseCase(IDurativeActivityRepository durativeA
 
         await Task.CompletedTask;
 
-        return NothingResponse.Value;
+        return activity.Id;
     }
 }

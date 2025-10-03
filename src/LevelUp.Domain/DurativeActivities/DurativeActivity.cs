@@ -25,4 +25,12 @@ public class DurativeActivity : AggregateRoot<Guid>
     public DateTimeOffset Date { get; set; }
     public TimeSpan Duration { get; set; }
     public string Category { get; set; }
+
+    public void Update(string name, DateTimeOffset date, TimeSpan duration, string category)
+    {
+        Name = name;
+        Date = date;
+        Duration = duration;
+        Category = category;
+    }
 }

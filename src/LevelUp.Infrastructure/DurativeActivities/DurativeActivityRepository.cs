@@ -5,13 +5,23 @@ namespace LevelUp.Infrastructure.DurativeActivities;
 
 internal class DurativeActivityRepository(LevelUpDbContext dbContext) : IDurativeActivityRepository
 {
-    public void Add(DurativeActivity durativeActivity)
+    public void Add(DurativeActivity entity)
     {
-        dbContext.Set<DurativeActivity>().Add(durativeActivity);
+        dbContext.Set<DurativeActivity>().Add(entity);
     }
 
     public async Task<DurativeActivity[]> GetAsync()
     {
         return await dbContext.Set<DurativeActivity>().AsNoTracking().ToArrayAsync();
+    }
+
+    public async Task<DurativeActivity?> GetAsync(Guid id)
+    {
+        return await dbContext.Set<DurativeActivity>().FindAsync(id);
+    }
+
+    public void Update(DurativeActivity entity)
+    {
+        dbContext.Set<DurativeActivity>().Update(entity);
     }
 }

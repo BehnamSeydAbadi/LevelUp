@@ -1,4 +1,4 @@
-namespace LevelUp.Application.Activities.UseCases.CreateDurativeActivity;
+namespace LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
 
 public record CreateDurativeActivityRequest
 {

@@ -1,6 +1,6 @@
 using LevelUp.Domain.DurativeActivities;
 
-namespace LevelUp.Application.Activities.UseCases.GetActivities;
+namespace LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
 
 public class DurativeActivityResponse
 {

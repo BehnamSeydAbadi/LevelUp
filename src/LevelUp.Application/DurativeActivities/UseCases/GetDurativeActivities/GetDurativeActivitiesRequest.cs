@@ -1,0 +1,3 @@
+namespace LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
+
+public class GetDurativeActivitiesRequest;

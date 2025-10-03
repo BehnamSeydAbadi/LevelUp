@@ -1,7 +1,7 @@
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Domain.DurativeActivities;
 
-namespace LevelUp.Application.Activities.UseCases.GetActivities;
+namespace LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
 
 public class GetDurativeActivitiesUseCase(IDurativeActivityRepository durativeActivityRepository)
     : IReadUseCase<GetDurativeActivitiesRequest, DurativeActivityResponse[]>

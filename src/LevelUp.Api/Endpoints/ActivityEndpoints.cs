@@ -1,7 +1,8 @@
 using LevelUp.Api.Endpoints.DTOs;
-using LevelUp.Application.Activities.UseCases.CreateDurativeActivity;
-using LevelUp.Application.Activities.UseCases.GetActivities;
 using LevelUp.Application.Common.UseCases;
+using LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
+using LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
+using LevelUp.Application.DurativeActivities.UseCases.UpdateDurativeActivity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LevelUp.Api.Endpoints;
@@ -12,7 +13,7 @@ public static class ActivityEndpoints
     {
         app.MapPost($"api/{version}/activities/duratives", async (
             [FromBody] CreateDurativeActivityDto dto,
-            [FromServices] IWriteUseCase<CreateDurativeActivityRequest, NothingResponse> useCase
+            [FromServices] IWriteUseCase<CreateDurativeActivityRequest, Guid> useCase
         ) =>
         {
             var request = new CreateDurativeActivityRequest
@@ -23,8 +24,8 @@ public static class ActivityEndpoints
                 Category = dto.Category,
             };
 
-            await useCase.HandleAsync(request);
-            return Results.Ok();
+            var id = await useCase.HandleAsync(request);
+            return Results.Ok(id);
         });
 
         app.MapGet($"api/{version}/activities/duratives", async (
@@ -33,6 +34,25 @@ public static class ActivityEndpoints
         {
             var response = await useCase.HandleAsync(new GetDurativeActivitiesRequest());
             return Results.Ok(response);
+        });
+
+        app.MapPut($"api/{version}/activities/duratives/{{id}}", async (
+            [FromRoute] Guid id,
+            [FromBody] UpdateDurativeActivityDto dto,
+            [FromServices] IWriteUseCase<UpdateDurativeActivityRequest, NothingResponse> useCase
+        ) =>
+        {
+            var request = new UpdateDurativeActivityRequest
+            {
+                Id = id,
+                Name = dto.Name,
+                Date = dto.Date,
+                Duration = TimeSpan.Parse(dto.Duration),
+                Category = dto.Category,
+            };
+
+            await useCase.HandleAsync(request);
+            return Results.Ok();
         });
     }
 }

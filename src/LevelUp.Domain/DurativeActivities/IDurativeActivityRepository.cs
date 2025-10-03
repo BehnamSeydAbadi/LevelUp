@@ -4,6 +4,8 @@ namespace LevelUp.Domain.DurativeActivities;
 
 public interface IDurativeActivityRepository : IRepository
 {
-    void Add(DurativeActivity durativeActivity);
+    void Add(DurativeActivity entity);
     Task<DurativeActivity[]> GetAsync();
+    Task<DurativeActivity?> GetAsync(Guid id);
+    void Update(DurativeActivity entity);
 }
