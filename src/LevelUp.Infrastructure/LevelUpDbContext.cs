@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LevelUp.Infrastructure;
 
-public class LevelUpDbContext : DbContext
+public class LevelUpDbContext(DbContextOptions<LevelUpDbContext> options) : DbContext(options)
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
