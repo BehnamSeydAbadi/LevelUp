@@ -4,4 +4,5 @@ namespace LevelUp.Domain.Activities;
 
 public interface IActivityRepository : IRepository
 {
+    void Add(Activity activity);
 }

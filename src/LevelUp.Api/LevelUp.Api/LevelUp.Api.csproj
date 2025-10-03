@@ -2,9 +2,10 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Swashbuckle.AspNetCore"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design"/>
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\..\LevelUp.Application\LevelUp.Application.csproj" />
-      <ProjectReference Include="..\..\LevelUp.Infrastructure\LevelUp.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\LevelUp.Application\LevelUp.Application.csproj"/>
+        <ProjectReference Include="..\..\LevelUp.Infrastructure\LevelUp.Infrastructure.csproj"/>
     </ItemGroup>
 </Project>

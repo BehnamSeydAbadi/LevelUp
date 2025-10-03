@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\LevelUp.Domain\LevelUp.Domain\LevelUp.Domain.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\LevelUp.Domain\LevelUp.Domain\LevelUp.Domain.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Scrutor"/>
+    </ItemGroup>
 </Project>

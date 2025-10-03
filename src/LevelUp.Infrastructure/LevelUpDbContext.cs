@@ -1,7 +1,7 @@
 using LevelUp.Infrastructure.Activities;
 using Microsoft.EntityFrameworkCore;
 
-namespace LevelUp.Infrastructure.Persistence;
+namespace LevelUp.Infrastructure;
 
 public class LevelUpDbContext : DbContext
 {

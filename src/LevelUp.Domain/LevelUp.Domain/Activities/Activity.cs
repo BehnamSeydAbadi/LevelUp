@@ -1,4 +1,3 @@
-using LevelUp.Domain.Activities.Events;
 using LevelUp.Domain.Common;
 
 namespace LevelUp.Domain.Activities;
@@ -9,7 +8,7 @@ public class Activity : AggregateRoot<Guid>
         => new(Guid.NewGuid(), name, date, duration, category);
 
     [PersistenceOnlyPurpose]
-    protected Activity()
+    public Activity()
     {
     }
 
@@ -20,19 +19,10 @@ public class Activity : AggregateRoot<Guid>
         Date = date;
         Duration = duration;
         Category = category;
-        
-        Queue(new ActivityCreated
-        {
-            AggregateId = id,
-            Name = name,
-            Date = date,
-            Duration = duration,
-            Category = category
-        });
     }
 
-    public string Name { get; private set; }
-    public DateTimeOffset Date { get; private set; }
-    public TimeSpan Duration { get; private set; }
-    public string Category { get; private set; }
+    public string Name { get; set; }
+    public DateTimeOffset Date { get; set; }
+    public TimeSpan Duration { get; set; }
+    public string Category { get; set; }
 }
