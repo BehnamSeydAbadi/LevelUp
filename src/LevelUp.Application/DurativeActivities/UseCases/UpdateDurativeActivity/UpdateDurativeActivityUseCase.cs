@@ -1,4 +1,5 @@
 using LevelUp.Application.Common.UseCases;
+using LevelUp.Application.DurativeActivities.Exceptions;
 using LevelUp.Domain.DurativeActivities;
 
 namespace LevelUp.Application.DurativeActivities.UseCases.UpdateDurativeActivity;

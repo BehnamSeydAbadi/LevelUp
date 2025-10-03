@@ -1,6 +1,7 @@
 using LevelUp.Api.Endpoints.DTOs;
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
+using LevelUp.Application.DurativeActivities.UseCases.DeleteDurativeActivity;
 using LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
 using LevelUp.Application.DurativeActivities.UseCases.UpdateDurativeActivity;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,15 @@ public static class ActivityEndpoints
             };
 
             await useCase.HandleAsync(request);
+            return Results.Ok();
+        });
+
+        app.MapDelete($"api/{version}/activities/duratives/{{id}}", async (
+            [FromRoute] Guid id,
+            [FromServices] IWriteUseCase<DeleteDurativeActivityRequest, NothingResponse> useCase
+        ) =>
+        {
+            await useCase.HandleAsync(new DeleteDurativeActivityRequest { Id = id });
             return Results.Ok();
         });
     }

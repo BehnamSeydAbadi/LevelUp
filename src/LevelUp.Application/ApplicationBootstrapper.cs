@@ -1,6 +1,7 @@
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Application.Common.UseCases.Decorators;
 using LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
+using LevelUp.Application.DurativeActivities.UseCases.DeleteDurativeActivity;
 using LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
 using LevelUp.Application.DurativeActivities.UseCases.UpdateDurativeActivity;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ public static class ApplicationBootstrapper
             .AddScoped<IWriteUseCase<CreateDurativeActivityRequest, Guid>, CreateDurativeActivityUseCase>();
         serviceCollection
             .AddScoped<IWriteUseCase<UpdateDurativeActivityRequest, NothingResponse>, UpdateDurativeActivityUseCase>();
+        serviceCollection
+            .AddScoped<IWriteUseCase<DeleteDurativeActivityRequest, NothingResponse>, DeleteDurativeActivityUseCase>();
 
         serviceCollection
             .AddScoped<IReadUseCase<GetDurativeActivitiesRequest, DurativeActivityResponse[]>,

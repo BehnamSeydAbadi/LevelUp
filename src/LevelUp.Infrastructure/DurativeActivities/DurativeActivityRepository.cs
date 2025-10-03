@@ -24,4 +24,9 @@ internal class DurativeActivityRepository(LevelUpDbContext dbContext) : IDurativ
     {
         dbContext.Set<DurativeActivity>().Update(entity);
     }
+
+    public void Delete(DurativeActivity entity)
+    {
+        dbContext.Set<DurativeActivity>().Remove(entity);
+    }
 }

@@ -8,4 +8,5 @@ public interface IDurativeActivityRepository : IRepository
     Task<DurativeActivity[]> GetAsync();
     Task<DurativeActivity?> GetAsync(Guid id);
     void Update(DurativeActivity entity);
+    void Delete(DurativeActivity entity);
 }
