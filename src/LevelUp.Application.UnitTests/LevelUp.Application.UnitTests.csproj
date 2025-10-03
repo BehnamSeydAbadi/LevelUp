@@ -13,10 +13,12 @@
         <PackageReference Include="xunit"/>
         <PackageReference Include="xunit.runner.visualstudio"/>
         <PackageReference Include="FluentAssertions"/>
+        
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\LevelUp.Domain\LevelUp.Domain\LevelUp.Domain.csproj"/>
+      <ProjectReference Include="..\LevelUp.Application\LevelUp.Application.csproj" />
+      <ProjectReference Include="..\LevelUp.Domain\LevelUp.Domain.csproj" />
     </ItemGroup>
 
 </Project>
