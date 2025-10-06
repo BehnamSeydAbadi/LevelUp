@@ -1,5 +1,5 @@
 using LevelUp.Application.ActionActivities.Exceptions;
-using LevelUp.Application.ActionActivities.UseCases.UpdateActionActivities;
+using LevelUp.Application.ActionActivities.UseCases.UpdateActionActivity;
 using LevelUp.Domain.ActionActivities;
 
 namespace LevelUp.Application.UnitTests.ActionActivities.UseCases;

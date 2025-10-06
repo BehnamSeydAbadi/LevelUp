@@ -1,0 +1,3 @@
+namespace LevelUp.Application.ActionActivities.UseCases.GetActionActivities;
+
+public class GetActionActivitiesRequest;

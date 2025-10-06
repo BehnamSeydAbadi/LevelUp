@@ -2,7 +2,7 @@ using LevelUp.Application.ActionActivities.Exceptions;
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Domain.ActionActivities;
 
-namespace LevelUp.Application.ActionActivities.UseCases.UpdateActionActivities;
+namespace LevelUp.Application.ActionActivities.UseCases.UpdateActionActivity;
 
 public class UpdateActionActivityUseCase(
     IActionActivityRepository actionActivityRepository

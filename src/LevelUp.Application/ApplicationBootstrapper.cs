@@ -1,3 +1,7 @@
+using LevelUp.Application.ActionActivities.UseCases.CreateActionActivity;
+using LevelUp.Application.ActionActivities.UseCases.DeleteActionActivity;
+using LevelUp.Application.ActionActivities.UseCases.GetActionActivities;
+using LevelUp.Application.ActionActivities.UseCases.UpdateActionActivity;
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Application.Common.UseCases.Decorators;
 using LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
@@ -18,10 +22,21 @@ public static class ApplicationBootstrapper
             .AddScoped<IWriteUseCase<UpdateDurativeActivityRequest, NothingResponse>, UpdateDurativeActivityUseCase>();
         serviceCollection
             .AddScoped<IWriteUseCase<DeleteDurativeActivityRequest, NothingResponse>, DeleteDurativeActivityUseCase>();
+        
+        serviceCollection
+            .AddScoped<IWriteUseCase<CreateActionActivityRequest, Guid>, CreateActionActivityUseCase>();
+        serviceCollection
+            .AddScoped<IWriteUseCase<UpdateActionActivityRequest, NothingResponse>, UpdateActionActivityUseCase>();
+        serviceCollection
+            .AddScoped<IWriteUseCase<DeleteActionActivityRequest, NothingResponse>, DeleteActionActivityUseCase>();
 
         serviceCollection
             .AddScoped<IReadUseCase<GetDurativeActivitiesRequest, DurativeActivityResponse[]>,
                 GetDurativeActivitiesUseCase>();
+        
+        serviceCollection
+            .AddScoped<IReadUseCase<GetActionActivitiesRequest, ActionActivityResponse[]>,
+                GetActionActivitiesUseCase>();
 
         serviceCollection.Decorate(typeof(IWriteUseCase<,>), typeof(SaveChangesUseCaseDecorator<,>));
     }

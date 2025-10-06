@@ -1,4 +1,4 @@
-namespace LevelUp.Application.ActionActivities.UseCases.UpdateActionActivities;
+namespace LevelUp.Application.ActionActivities.UseCases.UpdateActionActivity;
 
 public class UpdateActionActivityRequest
 {

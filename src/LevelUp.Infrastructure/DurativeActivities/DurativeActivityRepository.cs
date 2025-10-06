@@ -12,7 +12,7 @@ internal class DurativeActivityRepository(LevelUpDbContext dbContext) : IDurativ
 
     public async Task<DurativeActivity[]> GetAsync()
     {
-        return await dbContext.Set<DurativeActivity>().AsNoTracking().ToArrayAsync();
+        return await dbContext.Set<DurativeActivity>().ToArrayAsync();
     }
 
     public async Task<DurativeActivity?> GetAsync(Guid id)
