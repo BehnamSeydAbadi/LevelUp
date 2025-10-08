@@ -1,0 +1,3 @@
+namespace LevelUp.Application.DurativeRewards.UseCases.GetDurativeRewards;
+
+public class GetDurativeRewardsRequest;

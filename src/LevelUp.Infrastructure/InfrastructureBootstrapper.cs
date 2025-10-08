@@ -1,9 +1,11 @@
 using LevelUp.Application.Common;
 using LevelUp.Domain.ActionActivities;
 using LevelUp.Domain.DurativeActivities;
+using LevelUp.Domain.DurativeRewards;
 using LevelUp.Infrastructure.ActionActivities;
 using LevelUp.Infrastructure.Common;
 using LevelUp.Infrastructure.DurativeActivities;
+using LevelUp.Infrastructure.DurativeRewards;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +23,7 @@ public static class InfrastructureBootstrapper
 
         services.AddScoped<IDurativeActivityRepository, DurativeActivityRepository>();
         services.AddScoped<IActionActivityRepository, ActionActivityRepository>();
+        services.AddScoped<IDurativeRewardRepository, DurativeRewardRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }

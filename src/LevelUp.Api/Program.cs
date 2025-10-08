@@ -1,4 +1,5 @@
-using LevelUp.Api.Endpoints;
+using LevelUp.Api.Endpoints.Activities;
+using LevelUp.Api.Endpoints.Rewards;
 using LevelUp.Application;
 using LevelUp.Infrastructure;
 
@@ -16,7 +17,10 @@ var app = builder.Build();
 
 InfrastructureBootstrapper.ApplyMigrations(app);
 
-ActivityEndpoints.Map(app, version: "v1");
+const string version = "v1";
+
+ActivityEndpoints.Map(app, version);
+RewardEndpoints.Map(app, version);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

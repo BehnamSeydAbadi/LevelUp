@@ -1,4 +1,4 @@
-namespace LevelUp.Api.Endpoints.DTOs;
+namespace LevelUp.Api.Endpoints.Activities.DTOs;
 
 public class CreateActionActivityDto
 {

@@ -1,4 +1,4 @@
-using LevelUp.Api.Endpoints.DTOs;
+using LevelUp.Api.Endpoints.Activities.DTOs;
 using LevelUp.Application.ActionActivities.UseCases.CreateActionActivity;
 using LevelUp.Application.ActionActivities.UseCases.DeleteActionActivity;
 using LevelUp.Application.ActionActivities.UseCases.GetActionActivities;
@@ -10,13 +10,13 @@ using LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
 using LevelUp.Application.DurativeActivities.UseCases.UpdateDurativeActivity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LevelUp.Api.Endpoints;
+namespace LevelUp.Api.Endpoints.Activities;
 
 public static class ActivityEndpoints
 {
-    public static void Map(IEndpointRouteBuilder app, string version)
+    public static void Map(IEndpointRouteBuilder endpoints, string version)
     {
-        app.MapPost($"api/{version}/activities/duratives", async (
+        endpoints.MapPost($"api/{version}/activities/duratives", async (
             [FromBody] CreateDurativeActivityDto dto,
             [FromServices] IWriteUseCase<CreateDurativeActivityRequest, Guid> useCase
         ) =>
@@ -33,7 +33,7 @@ public static class ActivityEndpoints
             return Results.Ok(id);
         });
 
-        app.MapGet($"api/{version}/activities/duratives", async (
+        endpoints.MapGet($"api/{version}/activities/duratives", async (
             [FromServices] IReadUseCase<GetDurativeActivitiesRequest, DurativeActivityResponse[]> useCase
         ) =>
         {
@@ -41,7 +41,7 @@ public static class ActivityEndpoints
             return Results.Ok(response);
         });
 
-        app.MapPut($"api/{version}/activities/duratives/{{id}}", async (
+        endpoints.MapPut($"api/{version}/activities/duratives/{{id}}", async (
             [FromRoute] Guid id,
             [FromBody] UpdateDurativeActivityDto dto,
             [FromServices] IWriteUseCase<UpdateDurativeActivityRequest, NothingResponse> useCase
@@ -60,7 +60,7 @@ public static class ActivityEndpoints
             return Results.Ok();
         });
 
-        app.MapDelete($"api/{version}/activities/duratives/{{id}}", async (
+        endpoints.MapDelete($"api/{version}/activities/duratives/{{id}}", async (
             [FromRoute] Guid id,
             [FromServices] IWriteUseCase<DeleteDurativeActivityRequest, NothingResponse> useCase
         ) =>
@@ -71,7 +71,7 @@ public static class ActivityEndpoints
         
         
         
-        app.MapPost($"api/{version}/activities/actions", async (
+        endpoints.MapPost($"api/{version}/activities/actions", async (
             [FromBody] CreateActionActivityDto dto,
             [FromServices] IWriteUseCase<CreateActionActivityRequest, Guid> useCase
         ) =>
@@ -87,7 +87,7 @@ public static class ActivityEndpoints
             return Results.Ok(id);
         });
 
-        app.MapGet($"api/{version}/activities/actions", async (
+        endpoints.MapGet($"api/{version}/activities/actions", async (
             [FromServices] IReadUseCase<GetActionActivitiesRequest, ActionActivityResponse[]> useCase
         ) =>
         {
@@ -95,7 +95,7 @@ public static class ActivityEndpoints
             return Results.Ok(response);
         });
 
-        app.MapPut($"api/{version}/activities/actions/{{id}}", async (
+        endpoints.MapPut($"api/{version}/activities/actions/{{id}}", async (
             [FromRoute] Guid id,
             [FromBody] UpdateActionActivityDto dto,
             [FromServices] IWriteUseCase<UpdateActionActivityRequest, NothingResponse> useCase
@@ -113,7 +113,7 @@ public static class ActivityEndpoints
             return Results.Ok();
         });
 
-        app.MapDelete($"api/{version}/activities/actions/{{id}}", async (
+        endpoints.MapDelete($"api/{version}/activities/actions/{{id}}", async (
             [FromRoute] Guid id,
             [FromServices] IWriteUseCase<DeleteActionActivityRequest, NothingResponse> useCase
         ) =>
