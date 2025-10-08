@@ -1,6 +1,6 @@
 using LevelUp.Domain.DurativeRewards;
 
-namespace LevelUp.Application.DurativeRewards.UseCases.GetDurativeRewards;
+namespace LevelUp.Application.DurativeRewards.Responses;
 
 public class DurativeRewardResponse
 {

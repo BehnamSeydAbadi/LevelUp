@@ -1,7 +1,9 @@
 using LevelUp.Api.Endpoints.Rewards.DTOs;
 using LevelUp.Application.Common.UseCases;
+using LevelUp.Application.DurativeRewards.Responses;
 using LevelUp.Application.DurativeRewards.UseCases.CreateDurativeReward;
 using LevelUp.Application.DurativeRewards.UseCases.DeleteDurativeReward;
+using LevelUp.Application.DurativeRewards.UseCases.GetDurativeReward;
 using LevelUp.Application.DurativeRewards.UseCases.GetDurativeRewards;
 using LevelUp.Application.DurativeRewards.UseCases.UpdateDurativeReward;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +37,15 @@ public static class RewardEndpoints
         {
             var response = await useCase.HandleAsync(new GetDurativeRewardsRequest());
             return Results.Ok(response);
+        });
+
+        endpoints.MapGet($"api/{version}/rewards/duratives/{{id}}", async (
+            [FromRoute] Guid id,
+            [FromServices] IReadUseCase<GetDurativeRewardRequest, DurativeRewardResponse?> useCase
+        ) =>
+        {
+            var response = await useCase.HandleAsync(new GetDurativeRewardRequest { Id = id });
+            return response is null ? Results.NoContent() : Results.Ok(response);
         });
 
         endpoints.MapPut($"api/{version}/rewards/duratives/{{id}}", async (

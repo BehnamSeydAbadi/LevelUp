@@ -8,8 +8,10 @@ using LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
 using LevelUp.Application.DurativeActivities.UseCases.DeleteDurativeActivity;
 using LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
 using LevelUp.Application.DurativeActivities.UseCases.UpdateDurativeActivity;
+using LevelUp.Application.DurativeRewards.Responses;
 using LevelUp.Application.DurativeRewards.UseCases.CreateDurativeReward;
 using LevelUp.Application.DurativeRewards.UseCases.DeleteDurativeReward;
+using LevelUp.Application.DurativeRewards.UseCases.GetDurativeReward;
 using LevelUp.Application.DurativeRewards.UseCases.GetDurativeRewards;
 using LevelUp.Application.DurativeRewards.UseCases.UpdateDurativeReward;
 using Microsoft.Extensions.DependencyInjection;
@@ -62,6 +64,9 @@ public static class ApplicationBootstrapper
         serviceCollection
             .AddScoped<IReadUseCase<GetDurativeRewardsRequest, DurativeRewardResponse[]>,
                 GetDurativeRewardsUseCase>();
+        serviceCollection
+            .AddScoped<IReadUseCase<GetDurativeRewardRequest, DurativeRewardResponse?>,
+                GetDurativeRewardUseCase>();
 
         #endregion
 
