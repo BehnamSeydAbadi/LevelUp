@@ -1,6 +1,7 @@
 using LevelUp.Api.Endpoints.Rewards.DTOs;
 using LevelUp.Application.ActionRewards.UseCases.CreateActionReward;
 using LevelUp.Application.ActionRewards.UseCases.DeleteActionReward;
+using LevelUp.Application.ActionRewards.UseCases.GetActionReward;
 using LevelUp.Application.ActionRewards.UseCases.UpdateActionReward;
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Application.DurativeRewards.Responses;
@@ -78,9 +79,8 @@ public static class RewardEndpoints
             await useCase.HandleAsync(new DeleteDurativeRewardRequest { Id = id });
             return Results.Ok();
         });
-        
-        
-        
+
+
         endpoints.MapPost($"api/{version}/rewards/actions", async (
             [FromBody] CreateActionRewardDto dto,
             [FromServices] IWriteUseCase<CreateActionRewardRequest, Guid> useCase
@@ -96,7 +96,15 @@ public static class RewardEndpoints
             var id = await useCase.HandleAsync(request);
             return Results.Ok(id);
         });
-        
+
+        endpoints.MapGet($"api/{version}/rewards/actions", async (
+            [FromServices] IReadUseCase<GetActionRewardsRequest, ActionRewardResponse[]> useCase
+        ) =>
+        {
+            var response = await useCase.HandleAsync(new GetActionRewardsRequest());
+            return Results.Ok(response);
+        });
+
         endpoints.MapPut($"api/{version}/rewards/actions/{{id}}", async (
             [FromRoute] Guid id,
             [FromBody] UpdateActionRewardDto dto,

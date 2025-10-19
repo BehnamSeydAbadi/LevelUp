@@ -1,8 +1,10 @@
 using LevelUp.Application.Common;
 using LevelUp.Domain.ActionActivities;
+using LevelUp.Domain.ActionRewards;
 using LevelUp.Domain.DurativeActivities;
 using LevelUp.Domain.DurativeRewards;
 using LevelUp.Infrastructure.ActionActivities;
+using LevelUp.Infrastructure.ActionRewards;
 using LevelUp.Infrastructure.Common;
 using LevelUp.Infrastructure.DurativeActivities;
 using LevelUp.Infrastructure.DurativeRewards;
@@ -24,6 +26,7 @@ public static class InfrastructureBootstrapper
         services.AddScoped<IDurativeActivityRepository, DurativeActivityRepository>();
         services.AddScoped<IActionActivityRepository, ActionActivityRepository>();
         services.AddScoped<IDurativeRewardRepository, DurativeRewardRepository>();
+        services.AddScoped<IActionRewardRepository, ActionRewardRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }

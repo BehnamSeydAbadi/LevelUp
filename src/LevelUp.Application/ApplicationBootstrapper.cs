@@ -2,6 +2,10 @@ using LevelUp.Application.ActionActivities.UseCases.CreateActionActivity;
 using LevelUp.Application.ActionActivities.UseCases.DeleteActionActivity;
 using LevelUp.Application.ActionActivities.UseCases.GetActionActivities;
 using LevelUp.Application.ActionActivities.UseCases.UpdateActionActivity;
+using LevelUp.Application.ActionRewards.UseCases.CreateActionReward;
+using LevelUp.Application.ActionRewards.UseCases.DeleteActionReward;
+using LevelUp.Application.ActionRewards.UseCases.GetActionReward;
+using LevelUp.Application.ActionRewards.UseCases.UpdateActionReward;
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Application.Common.UseCases.Decorators;
 using LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
@@ -67,6 +71,21 @@ public static class ApplicationBootstrapper
         serviceCollection
             .AddScoped<IReadUseCase<GetDurativeRewardRequest, DurativeRewardResponse?>,
                 GetDurativeRewardUseCase>();
+
+        #endregion
+
+        #region ActionRewards
+
+        serviceCollection
+            .AddScoped<IWriteUseCase<CreateActionRewardRequest, Guid>, CreateActionRewardUseCase>();
+        serviceCollection
+            .AddScoped<IWriteUseCase<UpdateActionRewardRequest, NothingResponse>, UpdateActionRewardUseCase>();
+        serviceCollection
+            .AddScoped<IWriteUseCase<DeleteActionRewardRequest, NothingResponse>, DeleteActionRewardUseCase>();
+
+        serviceCollection
+            .AddScoped<IReadUseCase<GetActionRewardsRequest, ActionRewardResponse[]>,
+                GetActionRewardsUseCase>();
 
         #endregion
 
