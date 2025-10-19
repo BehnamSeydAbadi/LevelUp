@@ -1,4 +1,7 @@
 using LevelUp.Api.Endpoints.Rewards.DTOs;
+using LevelUp.Application.ActionRewards.UseCases.CreateActionReward;
+using LevelUp.Application.ActionRewards.UseCases.DeleteActionReward;
+using LevelUp.Application.ActionRewards.UseCases.UpdateActionReward;
 using LevelUp.Application.Common.UseCases;
 using LevelUp.Application.DurativeRewards.Responses;
 using LevelUp.Application.DurativeRewards.UseCases.CreateDurativeReward;
@@ -73,6 +76,51 @@ public static class RewardEndpoints
         ) =>
         {
             await useCase.HandleAsync(new DeleteDurativeRewardRequest { Id = id });
+            return Results.Ok();
+        });
+        
+        
+        
+        endpoints.MapPost($"api/{version}/rewards/actions", async (
+            [FromBody] CreateActionRewardDto dto,
+            [FromServices] IWriteUseCase<CreateActionRewardRequest, Guid> useCase
+        ) =>
+        {
+            var request = new CreateActionRewardRequest
+            {
+                Name = dto.Name,
+                Date = dto.Date,
+                Category = dto.Category,
+            };
+
+            var id = await useCase.HandleAsync(request);
+            return Results.Ok(id);
+        });
+        
+        endpoints.MapPut($"api/{version}/rewards/actions/{{id}}", async (
+            [FromRoute] Guid id,
+            [FromBody] UpdateActionRewardDto dto,
+            [FromServices] IWriteUseCase<UpdateActionRewardRequest, NothingResponse> useCase
+        ) =>
+        {
+            var request = new UpdateActionRewardRequest
+            {
+                Id = id,
+                Name = dto.Name,
+                Date = dto.Date,
+                Category = dto.Category,
+            };
+
+            await useCase.HandleAsync(request);
+            return Results.Ok();
+        });
+
+        endpoints.MapDelete($"api/{version}/rewards/actions/{{id}}", async (
+            [FromRoute] Guid id,
+            [FromServices] IWriteUseCase<DeleteActionRewardRequest, NothingResponse> useCase
+        ) =>
+        {
+            await useCase.HandleAsync(new DeleteActionRewardRequest { Id = id });
             return Results.Ok();
         });
     }
