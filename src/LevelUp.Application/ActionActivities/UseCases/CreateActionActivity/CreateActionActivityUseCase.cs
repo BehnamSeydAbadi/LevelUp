@@ -8,7 +8,7 @@ public class CreateActionActivityUseCase(IActionActivityRepository actionActivit
 {
     public async Task<Guid> HandleAsync(CreateActionActivityRequest request)
     {
-        var activity = ActionActivity.Create(request.Name, request.Date, request.Category);
+        var activity = ActionActivity.Create(request.Name, request.Date, request.Category, request.RewardId);
 
         actionActivityRepository.Add(activity);
 

@@ -1,4 +1,3 @@
-using LevelUp.Application.ActionActivities.UseCases;
 using LevelUp.Application.ActionActivities.UseCases.CreateActionActivity;
 using LevelUp.Domain.ActionActivities;
 
@@ -30,5 +29,6 @@ public class CreateActionActivityUseCaseTests
         createdActivity.Name.Should().Be(request.Name);
         createdActivity.Date.Should().Be(request.Date);
         createdActivity.Category.Should().Be(request.Category);
+        createdActivity.RewardId.Should().Be(request.RewardId);
     }
 }

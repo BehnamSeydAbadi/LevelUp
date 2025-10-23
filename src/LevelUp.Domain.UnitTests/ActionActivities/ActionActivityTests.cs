@@ -10,14 +10,15 @@ public class ActionActivityTests
         const string name = "activity-name";
         var date = DateTimeOffset.Now;
         const string category = "activity-category";
+        var rewardId = Guid.NewGuid();
 
-
-        var activity = ActionActivity.Create(name, date, category);
+        var activity = ActionActivity.Create(name, date, category, rewardId);
 
         activity.Id.Should().NotBe(Guid.Empty);
         activity.Name.Should().Be(name);
         activity.Date.Should().Be(date);
         activity.Category.Should().Be(category);
+        activity.RewardId.Should().Be(rewardId);
     }
 
     [Fact(DisplayName = "When an action activity is updated, Then it is done successfully")]
