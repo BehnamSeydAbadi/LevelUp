@@ -5,6 +5,8 @@ namespace LevelUp.Domain.Users;
 
 public class User : AggregateRoot<Guid>
 {
+    private readonly List<UserActivity> _activities = [];
+
     public static User Register(string email, string password)
     {
         return new User
@@ -18,6 +20,7 @@ public class User : AggregateRoot<Guid>
     public EmailValueObject Email { get; set; }
     public string Password { get; set; }
     public UserProfileValueObject? Profile { get; set; }
+    public IReadOnlyList<UserActivity> Activities => _activities;
 
     public void AddProfileInfo(string firstName, string lastName, DateTime dateOfBirth, string imageUrl)
     {
@@ -27,5 +30,15 @@ public class User : AggregateRoot<Guid>
     public void UpdateProfile(string firstName, string lastName, DateTime dateOfBirth, string imageUrl)
     {
         Profile = UserProfileValueObject.Create(firstName, lastName, dateOfBirth, imageUrl);
+    }
+
+    public void PerformActionActivity(Guid activityId, DateTimeOffset date)
+    {
+        _activities.Add(UserActivity.PerformAction(activityId, date));
+    }
+
+    public void PerformDurativeActivity(Guid activityId, DateTimeOffset date, TimeSpan duration)
+    {
+        _activities.Add(UserActivity.PerformDurative(activityId, date, duration));
     }
 }
