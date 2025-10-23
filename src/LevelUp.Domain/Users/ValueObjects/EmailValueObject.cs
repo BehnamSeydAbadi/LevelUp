@@ -13,6 +13,11 @@ public record EmailValueObject : ValueObject
         return new EmailValueObject(value);
     }
 
+    [PersistenceOnlyPurpose]
+    protected EmailValueObject()
+    {
+    }
+
     private EmailValueObject(string value)
     {
         if (new EmailAddressAttribute().IsValid(value) is false)

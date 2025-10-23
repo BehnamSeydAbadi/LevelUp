@@ -17,4 +17,15 @@ public class User : AggregateRoot<Guid>
 
     public EmailValueObject Email { get; set; }
     public string Password { get; set; }
+    public UserProfileValueObject? Profile { get; set; }
+
+    public void AddProfileInfo(string firstName, string lastName, DateTime dateOfBirth, string imageUrl)
+    {
+        Profile = UserProfileValueObject.Create(firstName, lastName, dateOfBirth, imageUrl);
+    }
+
+    public void UpdateProfile(string firstName, string lastName, DateTime dateOfBirth, string imageUrl)
+    {
+        Profile = UserProfileValueObject.Create(firstName, lastName, dateOfBirth, imageUrl);
+    }
 }
