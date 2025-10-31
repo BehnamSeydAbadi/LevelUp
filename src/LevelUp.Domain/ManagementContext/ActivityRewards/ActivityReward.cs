@@ -10,16 +10,19 @@ public class ActivityReward : AggregateRoot<Guid>
     {
     }
 
-    public static ActivityReward Link(Guid activityId, Guid rewardId)
+    public static ActivityReward LinkActionActivityToActionReward(Guid activityId, Guid rewardId, int rewardAmplifier)
     {
         return new ActivityReward
         {
             Id = Guid.NewGuid(),
             ActivityId = activityId,
-            RewardId = rewardId
+            RewardId = rewardId,
+            RewardAmplifier = rewardAmplifier
         };
     }
 
+
     public Guid ActivityId { get; set; }
     public Guid RewardId { get; set; }
+    public int? RewardAmplifier { get; set; }
 }
