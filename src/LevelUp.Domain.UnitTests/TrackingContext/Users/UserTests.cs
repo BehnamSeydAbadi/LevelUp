@@ -224,4 +224,34 @@ public class UserTests
         usedReward.Duration.Value.Minutes.Should().Be(20);
         usedReward.Duration.Value.Seconds.Should().Be(0);
     }
+
+    [Fact(DisplayName =
+        "There is a registered user with some action reward achievements, When the user uses an action reward, Then the oldest reward is used successfully")]
+    public void
+        There_Is_A_Registered_User_With_Some_Action_Reward_Achievements_When_The_User_Uses_An_Action_Reward_Then_The_Oldest_Reward_Is_Used_Successfully()
+    {
+        var user = Builder<User>.CreateNew().Build();
+
+        var rewardId = Guid.NewGuid();
+        user.AchieveActionReward(rewardId);
+        user.AchieveActionReward(rewardId);
+        user.AchieveActionReward(rewardId);
+
+
+        user.UseActionReward(rewardId);
+
+
+        user.AchievedRewards.Should().HaveCount(3);
+
+        var userRewardsOrderedByAchievedAt = user.AchievedRewards.OrderBy(ur => ur.AchievedAt).ToArray();
+
+        userRewardsOrderedByAchievedAt[0].IsUsed.Should().BeTrue();
+        userRewardsOrderedByAchievedAt[0].UsedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+
+        userRewardsOrderedByAchievedAt[1].IsUsed.Should().BeFalse();
+        userRewardsOrderedByAchievedAt[1].UsedAt.Should().BeNull();
+
+        userRewardsOrderedByAchievedAt[2].IsUsed.Should().BeFalse();
+        userRewardsOrderedByAchievedAt[2].UsedAt.Should().BeNull();
+    }
 }

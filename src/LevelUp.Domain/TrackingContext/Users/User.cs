@@ -59,7 +59,11 @@ public class User : AggregateRoot<Guid>
 
     public void UseActionReward(Guid rewardId)
     {
-        var userReward = _achievedRewards.Single(ur => ur.RewardId == rewardId);
+        var userReward = _achievedRewards
+            .Where(ur => ur.RewardId == rewardId && ur.IsUsed is false)
+            .OrderBy(ur => ur.AchievedAt)
+            .First();
+
         userReward.MarkAsUsed();
     }
 
