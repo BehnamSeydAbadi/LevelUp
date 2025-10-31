@@ -39,14 +39,19 @@ public class UserReward : Entity<Guid>
 
     public void MarkAsUsed(TimeSpan duration)
     {
-        Duration = Duration!.Value.Subtract(duration);
+        UsedDuration = duration <= this.Duration!.Value
+            ? duration
+            : this.Duration.Value;
+
         UsedAt = DateTimeOffset.Now;
-        IsUsed = Duration.Value.TotalSeconds == 0;
+
+        IsUsed = UsedDuration!.Value == Duration!.Value;
     }
 
 
     public Guid RewardId { get; set; }
     public TimeSpan? Duration { get; set; }
+    public TimeSpan? UsedDuration { get; set; }
     public DateTimeOffset AchievedAt { get; set; }
     public bool IsUsed { get; set; }
     public DateTimeOffset? UsedAt { get; set; }

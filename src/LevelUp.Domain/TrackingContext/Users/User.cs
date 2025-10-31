@@ -1,5 +1,6 @@
 using LevelUp.Domain.Common;
 using LevelUp.Domain.TrackingContext.Users.Events;
+using LevelUp.Domain.TrackingContext.Users.Extensions;
 using LevelUp.Domain.TrackingContext.Users.ValueObjects;
 
 namespace LevelUp.Domain.TrackingContext.Users;
@@ -69,7 +70,19 @@ public class User : AggregateRoot<Guid>
 
     public void UseDurativeReward(Guid rewardId, TimeSpan duration)
     {
-        var userReward = _achievedRewards.Single(ur => ur.RewardId == rewardId);
-        userReward.MarkAsUsed(duration);
+        var userRewards = _achievedRewards
+            .Where(ur => ur.RewardId == rewardId && ur.IsUsed is false)
+            .OrderBy(ur => ur.AchievedAt)
+            .ToArray();
+
+        foreach (var userReward in userRewards)
+        {
+            var userRewardDuration = userReward.Duration!.Value;
+
+            userReward.MarkAsUsed(duration);
+            duration = duration.Subtract(userRewardDuration);
+
+            if (duration.IsTotallyZero() || duration.IsLowerThanZero()) break;
+        }
     }
 }
