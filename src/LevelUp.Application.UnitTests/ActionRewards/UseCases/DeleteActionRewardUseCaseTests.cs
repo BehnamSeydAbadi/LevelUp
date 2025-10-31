@@ -1,6 +1,6 @@
 using LevelUp.Application.ActionRewards.Exceptions;
 using LevelUp.Application.ActionRewards.UseCases.DeleteActionReward;
-using LevelUp.Domain.ActionRewards;
+using LevelUp.Domain.ManagementContext.ActionRewards;
 
 namespace LevelUp.Application.UnitTests.ActionRewards.UseCases;
 

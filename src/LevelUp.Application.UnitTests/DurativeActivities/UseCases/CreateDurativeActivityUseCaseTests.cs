@@ -1,5 +1,5 @@
 using LevelUp.Application.DurativeActivities.UseCases.CreateDurativeActivity;
-using LevelUp.Domain.DurativeActivities;
+using LevelUp.Domain.ManagementContext.DurativeActivities;
 
 namespace LevelUp.Application.UnitTests.DurativeActivities.UseCases;
 

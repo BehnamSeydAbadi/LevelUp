@@ -1,4 +1,4 @@
-using LevelUp.Domain.DurativeRewards;
+using LevelUp.Domain.ManagementContext.DurativeRewards;
 
 namespace LevelUp.Application.DurativeRewards.Responses;
 

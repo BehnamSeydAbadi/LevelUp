@@ -1,5 +1,5 @@
 using LevelUp.Application.ActionRewards.UseCases.CreateActionReward;
-using LevelUp.Domain.ActionRewards;
+using LevelUp.Domain.ManagementContext.ActionRewards;
 
 namespace LevelUp.Application.UnitTests.ActionRewards.UseCases;
 

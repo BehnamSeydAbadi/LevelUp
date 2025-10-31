@@ -1,5 +1,5 @@
 using LevelUp.Application.ActionActivities.UseCases.CreateActionActivity;
-using LevelUp.Domain.ActionActivities;
+using LevelUp.Domain.ManagementContext.ActionActivities;
 
 namespace LevelUp.Application.UnitTests.ActionActivities.UseCases;
 

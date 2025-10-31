@@ -1,4 +1,4 @@
-using LevelUp.Domain.ActionRewards;
+using LevelUp.Domain.ManagementContext.ActionRewards;
 
 namespace LevelUp.Application.ActionRewards.UseCases.GetActionReward;
 

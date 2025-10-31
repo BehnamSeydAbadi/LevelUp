@@ -1,4 +1,4 @@
-using LevelUp.Domain.DurativeActivities;
+using LevelUp.Domain.ManagementContext.DurativeActivities;
 
 namespace LevelUp.Application.DurativeActivities.UseCases.GetDurativeActivities;
 

@@ -1,4 +1,4 @@
-using LevelUp.Domain.ActionRewards;
+using LevelUp.Domain.ManagementContext.ActionRewards;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

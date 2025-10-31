@@ -1,5 +1,5 @@
 using LevelUp.Application.DurativeRewards.UseCases.CreateDurativeReward;
-using LevelUp.Domain.DurativeRewards;
+using LevelUp.Domain.ManagementContext.DurativeRewards;
 
 namespace LevelUp.Application.UnitTests.DurativeRewards.UseCases;
 

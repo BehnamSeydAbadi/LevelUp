@@ -1,6 +1,6 @@
 using LevelUp.Application.DurativeActivities.Exceptions;
 using LevelUp.Application.DurativeActivities.UseCases.DeleteDurativeActivity;
-using LevelUp.Domain.DurativeActivities;
+using LevelUp.Domain.ManagementContext.DurativeActivities;
 
 namespace LevelUp.Application.UnitTests.DurativeActivities.UseCases;
 

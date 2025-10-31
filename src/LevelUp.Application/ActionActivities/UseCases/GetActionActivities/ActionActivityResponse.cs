@@ -1,4 +1,4 @@
-using LevelUp.Domain.ActionActivities;
+using LevelUp.Domain.ManagementContext.ActionActivities;
 
 namespace LevelUp.Application.ActionActivities.UseCases.GetActionActivities;
 

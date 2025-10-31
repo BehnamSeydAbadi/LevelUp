@@ -1,4 +1,4 @@
-using LevelUp.Domain.ActionActivities;
+using LevelUp.Domain.ManagementContext.ActionActivities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LevelUp.Infrastructure.ActionActivities;

@@ -1,8 +1,8 @@
 using LevelUp.Application.Common;
-using LevelUp.Domain.ActionActivities;
-using LevelUp.Domain.ActionRewards;
-using LevelUp.Domain.DurativeActivities;
-using LevelUp.Domain.DurativeRewards;
+using LevelUp.Domain.ManagementContext.ActionActivities;
+using LevelUp.Domain.ManagementContext.ActionRewards;
+using LevelUp.Domain.ManagementContext.DurativeActivities;
+using LevelUp.Domain.ManagementContext.DurativeRewards;
 using LevelUp.Infrastructure.ActionActivities;
 using LevelUp.Infrastructure.ActionRewards;
 using LevelUp.Infrastructure.Common;

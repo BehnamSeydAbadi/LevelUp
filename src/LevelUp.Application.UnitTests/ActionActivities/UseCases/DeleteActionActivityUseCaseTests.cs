@@ -1,6 +1,6 @@
 using LevelUp.Application.ActionActivities.Exceptions;
 using LevelUp.Application.ActionActivities.UseCases.DeleteActionActivity;
-using LevelUp.Domain.ActionActivities;
+using LevelUp.Domain.ManagementContext.ActionActivities;
 
 namespace LevelUp.Application.UnitTests.ActionActivities.UseCases;
 

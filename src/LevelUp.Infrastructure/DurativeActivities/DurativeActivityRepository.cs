@@ -1,4 +1,4 @@
-using LevelUp.Domain.DurativeActivities;
+using LevelUp.Domain.ManagementContext.DurativeActivities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LevelUp.Infrastructure.DurativeActivities;
