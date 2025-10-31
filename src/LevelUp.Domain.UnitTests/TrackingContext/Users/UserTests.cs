@@ -125,7 +125,7 @@ public class UserTests
 
     [Fact(DisplayName =
         "There is a registered user, When the user achieves a durative reward, Then it is done successfully")]
-    public void There_Is_A_Registered_User_When_The_User_Achieves_A_Reward_Then_It_Is_Done_Successfully()
+    public void There_Is_A_Registered_User_When_The_User_Achieves_A_Durative_Reward_Then_It_Is_Done_Successfully()
     {
         var user = Builder<User>.CreateNew().Build();
 
@@ -139,6 +139,23 @@ public class UserTests
         user.AchievedRewards.Single().Id.Should().NotBe(Guid.Empty);
         user.AchievedRewards.Single().RewardId.Should().Be(rewardId);
         user.AchievedRewards.Single().Duration.Should().Be(duration);
+        user.AchievedRewards.Single().Date.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+    }
+
+    [Fact(DisplayName =
+        "There is a registered user, When the user achieves an action reward, Then it is done successfully")]
+    public void There_Is_A_Registered_User_When_The_User_Achieves_An_Action_Reward_Then_It_Is_Done_Successfully()
+    {
+        var user = Builder<User>.CreateNew().Build();
+
+        var rewardId = Guid.NewGuid();
+
+        user.AchieveActionReward(rewardId);
+
+        user.AchievedRewards.Should().NotBeEmpty();
+        user.AchievedRewards.Should().HaveCount(1);
+        user.AchievedRewards.Single().Id.Should().NotBe(Guid.Empty);
+        user.AchievedRewards.Single().RewardId.Should().Be(rewardId);
         user.AchievedRewards.Single().Date.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
     }
 }

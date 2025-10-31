@@ -25,4 +25,15 @@ public class UserReward : Entity<Guid>
             Date = DateTimeOffset.Now,
         };
     }
+
+
+    public static UserReward CreateAction(Guid rewardId)
+    {
+        return new UserReward
+        {
+            Id = Guid.NewGuid(),
+            RewardId = rewardId,
+            Date = DateTimeOffset.Now,
+        };
+    }
 }

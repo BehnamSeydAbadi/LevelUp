@@ -51,4 +51,9 @@ public class User : AggregateRoot<Guid>
     {
         _achievedRewards.Add(UserReward.CreateDurative(rewardId, duration));
     }
+
+    public void AchieveActionReward(Guid rewardId)
+    {
+        _achievedRewards.Add(UserReward.CreateAction(rewardId));
+    }
 }
