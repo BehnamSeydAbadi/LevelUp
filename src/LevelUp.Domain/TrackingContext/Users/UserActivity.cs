@@ -6,27 +6,27 @@ namespace LevelUp.Domain.TrackingContext.Users;
 public class UserActivity : Entity<Guid>
 {
     public Guid ActivityId { get; set; }
-    public DateTimeOffset Date { get; set; }
+    public DateTimeOffset PerformedAt { get; set; }
     public TimeSpan? Duration { get; set; }
 
-    public static UserActivity CreateDurative(Guid activityId, DateTimeOffset date, TimeSpan duration)
+    public static UserActivity CreateDurative(Guid activityId, DateTimeOffset performedAt, TimeSpan duration)
     {
         return new UserActivity
         {
             Id = Guid.NewGuid(),
             ActivityId = activityId,
-            Date = date,
+            PerformedAt = performedAt,
             Duration = duration
         };
     }
 
-    public static UserActivity CreateAction(Guid activityId, DateTimeOffset date)
+    public static UserActivity CreateAction(Guid activityId, DateTimeOffset performedAt)
     {
         return new UserActivity
         {
             Id = Guid.NewGuid(),
             ActivityId = activityId,
-            Date = date,
+            PerformedAt = performedAt,
         };
     }
 

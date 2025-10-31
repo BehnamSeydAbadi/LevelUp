@@ -15,7 +15,7 @@ public class UserActivityTests
 
         userActivity.Id.Should().NotBe(Guid.Empty);
         userActivity.ActivityId.Should().Be(activityId);
-        userActivity.Date.Should().Be(date);
+        userActivity.PerformedAt.Should().Be(date);
         userActivity.Duration.Should().Be(duration);
     }
 
@@ -29,7 +29,7 @@ public class UserActivityTests
 
         userActivity.Id.Should().NotBe(Guid.Empty);
         userActivity.ActivityId.Should().Be(activityId);
-        userActivity.Date.Should().Be(date);
+        userActivity.PerformedAt.Should().Be(date);
         userActivity.Duration.Should().BeNull();
     }
 }

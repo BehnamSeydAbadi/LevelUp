@@ -78,7 +78,7 @@ public class UserTests
         user.PerformedActivities.Should().HaveCount(1);
         user.PerformedActivities.Single().Id.Should().NotBe(Guid.Empty);
         user.PerformedActivities.Single().ActivityId.Should().Be(activityId);
-        user.PerformedActivities.Single().Date.Should().Be(date);
+        user.PerformedActivities.Single().PerformedAt.Should().Be(date);
         user.PerformedActivities.Single().Duration.Should().BeNull();
 
         var domainEvents = user.GetQueuedEvents();
@@ -109,7 +109,7 @@ public class UserTests
         user.PerformedActivities.Should().HaveCount(1);
         user.PerformedActivities.Single().Id.Should().NotBe(Guid.Empty);
         user.PerformedActivities.Single().ActivityId.Should().Be(activityId);
-        user.PerformedActivities.Single().Date.Should().Be(date);
+        user.PerformedActivities.Single().PerformedAt.Should().Be(date);
         user.PerformedActivities.Single().Duration.Should().Be(duration);
 
         var domainEvents = user.GetQueuedEvents();
@@ -139,7 +139,7 @@ public class UserTests
         user.AchievedRewards.Single().Id.Should().NotBe(Guid.Empty);
         user.AchievedRewards.Single().RewardId.Should().Be(rewardId);
         user.AchievedRewards.Single().Duration.Should().Be(duration);
-        user.AchievedRewards.Single().Date.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+        user.AchievedRewards.Single().AchievedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
     }
 
     [Fact(DisplayName =
@@ -156,6 +156,6 @@ public class UserTests
         user.AchievedRewards.Should().HaveCount(1);
         user.AchievedRewards.Single().Id.Should().NotBe(Guid.Empty);
         user.AchievedRewards.Single().RewardId.Should().Be(rewardId);
-        user.AchievedRewards.Single().Date.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+        user.AchievedRewards.Single().AchievedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
     }
 }

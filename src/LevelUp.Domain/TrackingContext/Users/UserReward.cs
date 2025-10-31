@@ -7,7 +7,7 @@ public class UserReward : Entity<Guid>
 {
     public Guid RewardId { get; set; }
     public TimeSpan? Duration { get; set; }
-    public DateTimeOffset Date { get; set; }
+    public DateTimeOffset AchievedAt { get; set; }
 
 
     [PersistenceOnlyPurpose]
@@ -22,10 +22,9 @@ public class UserReward : Entity<Guid>
             Id = Guid.NewGuid(),
             RewardId = rewardId,
             Duration = duration,
-            Date = DateTimeOffset.Now,
+            AchievedAt = DateTimeOffset.Now,
         };
     }
-
 
     public static UserReward CreateAction(Guid rewardId)
     {
@@ -33,7 +32,7 @@ public class UserReward : Entity<Guid>
         {
             Id = Guid.NewGuid(),
             RewardId = rewardId,
-            Date = DateTimeOffset.Now,
+            AchievedAt = DateTimeOffset.Now,
         };
     }
 }
