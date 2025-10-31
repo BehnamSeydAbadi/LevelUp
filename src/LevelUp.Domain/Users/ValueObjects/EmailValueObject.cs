@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using LevelUp.Domain.Common;
+using LevelUp.Domain.Common.Attributes;
+using LevelUp.Domain.Common.ValueObjects;
 using LevelUp.Domain.Users.Exceptions;
 
 namespace LevelUp.Domain.Users.ValueObjects;

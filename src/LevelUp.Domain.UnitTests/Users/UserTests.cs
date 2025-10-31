@@ -1,4 +1,5 @@
 using LevelUp.Domain.Users;
+using LevelUp.Domain.Users.Events;
 using LevelUp.Domain.Users.ValueObjects;
 
 namespace LevelUp.Domain.UnitTests.Users;
@@ -81,6 +82,15 @@ public class UserTests
         user.Activities.Single().ActivityId.Should().Be(activityId);
         user.Activities.Single().Date.Should().Be(date);
         user.Activities.Single().Duration.Should().BeNull();
+
+        var domainEvents = user.GetQueuedEvents();
+        domainEvents.Should().NotBeEmpty();
+
+        var @event = domainEvents.OfType<UserPerformedAnActionActivity>().SingleOrDefault();
+        @event.Should().NotBeNull();
+        @event!.Id.Should().Be(user.Id);
+        @event.ActivityId.Should().Be(activityId);
+        @event.CreationDateTime.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
     }
 
 
@@ -106,5 +116,15 @@ public class UserTests
         user.Activities.Single().ActivityId.Should().Be(activityId);
         user.Activities.Single().Date.Should().Be(date);
         user.Activities.Single().Duration.Should().Be(duration);
+
+        var domainEvents = user.GetQueuedEvents();
+        domainEvents.Should().NotBeEmpty();
+
+        var @event = domainEvents.OfType<UserPerformedADurativeActivity>().SingleOrDefault();
+        @event.Should().NotBeNull();
+        @event!.Id.Should().Be(user.Id);
+        @event.ActivityId.Should().Be(activityId);
+        @event.Duration.Should().Be(duration);
+        @event.CreationDateTime.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
     }
 }

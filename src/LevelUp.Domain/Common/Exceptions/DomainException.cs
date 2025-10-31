@@ -1,3 +1,3 @@
-namespace LevelUp.Domain.Common;
+namespace LevelUp.Domain.Common.Exceptions;
 
 public abstract class DomainException(string message) : Exception(message);

@@ -1,4 +1,5 @@
 using LevelUp.Domain.Common;
+using LevelUp.Domain.Common.Attributes;
 
 namespace LevelUp.Domain.Users;
 

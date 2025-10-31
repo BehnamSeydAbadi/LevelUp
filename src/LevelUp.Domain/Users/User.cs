@@ -1,4 +1,5 @@
 using LevelUp.Domain.Common;
+using LevelUp.Domain.Users.Events;
 using LevelUp.Domain.Users.ValueObjects;
 
 namespace LevelUp.Domain.Users;
@@ -35,10 +36,12 @@ public class User : AggregateRoot<Guid>
     public void PerformActionActivity(Guid activityId, DateTimeOffset date)
     {
         _activities.Add(UserActivity.PerformAction(activityId, date));
+        QueueEvent(new UserPerformedAnActionActivity(this.Id, activityId));
     }
 
     public void PerformDurativeActivity(Guid activityId, DateTimeOffset date, TimeSpan duration)
     {
         _activities.Add(UserActivity.PerformDurative(activityId, date, duration));
+        QueueEvent(new UserPerformedADurativeActivity(this.Id, activityId, duration));
     }
 }

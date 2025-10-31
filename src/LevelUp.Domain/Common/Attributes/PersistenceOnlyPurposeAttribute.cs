@@ -1,3 +1,3 @@
-namespace LevelUp.Domain.Common;
+namespace LevelUp.Domain.Common.Attributes;
 
 public class PersistenceOnlyPurposeAttribute : Attribute;

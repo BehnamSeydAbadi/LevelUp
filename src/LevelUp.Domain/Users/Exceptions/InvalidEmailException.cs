@@ -1,4 +1,4 @@
-using LevelUp.Domain.Common;
+using LevelUp.Domain.Common.Exceptions;
 
 namespace LevelUp.Domain.Users.Exceptions;
 
