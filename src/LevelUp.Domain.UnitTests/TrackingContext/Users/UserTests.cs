@@ -254,7 +254,7 @@ public class UserTests
     }
 
     [Fact(DisplayName =
-        "There is a registered user with some durative reward achievements, When user uses durative reward, Then oldest reward is fully used and remaining is deducted from another reward successfully")]
+        "There is a registered user with durative reward achievements, When user uses a durative reward partially, Then oldest reward is fully used and remaining duration is deducted from the next reward successfully")]
     public void
         There_Is_A_Registered_User_With_Some_Durative_Reward_Achievements_When_User_Uses_Durative_Reward_Then_Oldest_Reward_Is_Fully_Used_And_Remaining_Is_Deducted_From_Another_Reward_Successfully()
     {
@@ -287,6 +287,47 @@ public class UserTests
         userRewardsOrderedByAchievedAt[1].UsedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
         userRewardsOrderedByAchievedAt[1].Duration!.Value.Should().Be(secondDuration);
         userRewardsOrderedByAchievedAt[1].UsedDuration!.Value.Should().Be(new TimeSpan(0, 10, 0));
+
+        userRewardsOrderedByAchievedAt[2].IsUsed.Should().BeFalse();
+        userRewardsOrderedByAchievedAt[2].UsedAt.Should().BeNull();
+        userRewardsOrderedByAchievedAt[2].Duration!.Value.Should().Be(thirdDuration);
+        userRewardsOrderedByAchievedAt[2].UsedDuration.Should().BeNull();
+    }
+
+    [Fact(DisplayName =
+        "There is a registered user with durative reward achievements, When user uses a durative reward fully, Then oldest rewards are consumed first until remaining is depleted successfully")]
+    public void
+        There_Is_A_Registered_User_With_Durative_Reward_Achievements_When_User_Uses_A_Durative_Reward_Fully_Then_Oldest_Rewards_Are_Consumed_First_Until_Remaining_Is_Depleted_Successfully()
+    {
+        var user = Builder<User>.CreateNew().Build();
+
+        var rewardId = Guid.NewGuid();
+        var firstDuration = TimeSpan.FromMinutes(10);
+        var secondDuration = TimeSpan.FromMinutes(20);
+        var thirdDuration = TimeSpan.FromMinutes(30);
+        user.AchieveDurativeReward(rewardId, firstDuration);
+        user.AchieveDurativeReward(rewardId, secondDuration);
+        user.AchieveDurativeReward(rewardId, thirdDuration);
+
+        var usedDuration = TimeSpan.FromMinutes(30);
+
+
+        user.UseDurativeReward(rewardId, usedDuration);
+
+
+        user.AchievedRewards.Should().HaveCount(3);
+
+        var userRewardsOrderedByAchievedAt = user.AchievedRewards.OrderBy(ur => ur.AchievedAt).ToArray();
+
+        userRewardsOrderedByAchievedAt[0].IsUsed.Should().BeTrue();
+        userRewardsOrderedByAchievedAt[0].UsedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+        userRewardsOrderedByAchievedAt[0].Duration!.Value.Should().Be(firstDuration);
+        userRewardsOrderedByAchievedAt[0].UsedDuration!.Value.Should().Be(firstDuration);
+
+        userRewardsOrderedByAchievedAt[1].IsUsed.Should().BeTrue();
+        userRewardsOrderedByAchievedAt[1].UsedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+        userRewardsOrderedByAchievedAt[1].Duration!.Value.Should().Be(secondDuration);
+        userRewardsOrderedByAchievedAt[1].UsedDuration!.Value.Should().Be(secondDuration);
 
         userRewardsOrderedByAchievedAt[2].IsUsed.Should().BeFalse();
         userRewardsOrderedByAchievedAt[2].UsedAt.Should().BeNull();
