@@ -56,4 +56,16 @@ public class User : AggregateRoot<Guid>
     {
         _achievedRewards.Add(UserReward.CreateAction(rewardId));
     }
+
+    public void UseActionReward(Guid rewardId)
+    {
+        var userReward = _achievedRewards.Single(ur => ur.RewardId == rewardId);
+        userReward.MarkAsUsed();
+    }
+
+    public void UseDurativeReward(Guid rewardId, TimeSpan duration)
+    {
+        var userReward = _achievedRewards.Single(ur => ur.RewardId == rewardId);
+        userReward.MarkAsUsed(duration);
+    }
 }

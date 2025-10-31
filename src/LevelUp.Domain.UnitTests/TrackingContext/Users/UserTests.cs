@@ -158,4 +158,70 @@ public class UserTests
         user.AchievedRewards.Single().RewardId.Should().Be(rewardId);
         user.AchievedRewards.Single().AchievedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
     }
+
+    [Fact(DisplayName =
+        "There is a registered user, When the user uses an action reward, Then it is done successfully")]
+    public void There_Is_A_Registered_User_When_The_User_Uses_An_Action_Reward_Then_It_Is_Done_Successfully()
+    {
+        var user = Builder<User>.CreateNew().Build();
+
+        var rewardId = Guid.NewGuid();
+        user.AchieveActionReward(rewardId);
+
+
+        user.UseActionReward(rewardId);
+
+
+        user.AchievedRewards.Should().NotBeEmpty();
+        user.AchievedRewards.Single().IsUsed.Should().BeTrue();
+        user.AchievedRewards.Single().UsedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+    }
+
+    [Fact(DisplayName =
+        "There is a registered user, When the user uses all of a durative reward, Then it is done successfully")]
+    public void There_Is_A_Registered_User_When_The_User_Uses_All_Of_A_Durative_Reward_Then_It_Is_Done_Successfully()
+    {
+        var user = Builder<User>.CreateNew().Build();
+
+        var rewardId = Guid.NewGuid();
+        var duration = TimeSpan.FromMinutes(30);
+        user.AchieveDurativeReward(rewardId, duration);
+
+
+        user.UseDurativeReward(rewardId, duration);
+
+
+        user.AchievedRewards.Should().NotBeEmpty();
+        var usedReward = user.AchievedRewards.Single();
+        usedReward.IsUsed.Should().BeTrue();
+        usedReward.UsedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+        usedReward.Duration!.Value.Hours.Should().Be(0);
+        usedReward.Duration.Value.Minutes.Should().Be(0);
+        usedReward.Duration.Value.Seconds.Should().Be(0);
+    }
+
+    [Fact(DisplayName =
+        "There is a registered user, When the user partially uses a durative reward, Then only used duration deducted successfully")]
+    public void
+        There_Is_A_Registered_User_When_The_User_Partially_Uses_A_Durative_Reward_Then_Only_Used_Duration_Deducted_Successfully()
+    {
+        var user = Builder<User>.CreateNew().Build();
+
+        var rewardId = Guid.NewGuid();
+        var rewardDuration = TimeSpan.FromMinutes(30);
+        user.AchieveDurativeReward(rewardId, rewardDuration);
+
+        var usedDuration = TimeSpan.FromMinutes(10);
+
+        user.UseDurativeReward(rewardId, usedDuration);
+
+
+        user.AchievedRewards.Should().NotBeEmpty();
+        var usedReward = user.AchievedRewards.Single();
+        usedReward.IsUsed.Should().BeFalse();
+        usedReward.UsedAt.Should().BeCloseTo(DateTimeOffset.Now, TimeSpan.FromSeconds(5));
+        usedReward.Duration!.Value.Hours.Should().Be(0);
+        usedReward.Duration.Value.Minutes.Should().Be(20);
+        usedReward.Duration.Value.Seconds.Should().Be(0);
+    }
 }
